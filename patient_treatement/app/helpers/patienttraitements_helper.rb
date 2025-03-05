@@ -1,0 +1,2 @@
+module PatienttraitementsHelper
+end

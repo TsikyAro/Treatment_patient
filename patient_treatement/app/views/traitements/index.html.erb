@@ -1,0 +1,68 @@
+
+<!-- Formulaire d'insertion -->
+
+<div class="card">
+<div class="card-body">
+<h3>Gestion des Traitements</h3>
+    <%= form_with model: @traitement, url: traitements_path, method: :post, local: true do |f| %>
+        <div class="col-md-12">
+            <div class="mb-3">
+                <label for="categorySelect" class="form-label">Catégorie</label>
+                <%= f.collection_select :category_id, @categories, :id, :nomCategory, { prompt: "Sélectionnez une catégorie" }, { class: "form-select", id: "categorySelect", required: true } %>
+            </div>
+    
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :nomtraitement, "Nom du traitement" %>
+            <%= f.text_field :nomtraitement, class: "form-control", placeholder: "Entrez le nom du traitement en anglais" %>
+        </div>
+    
+
+    <div class="mb-3">
+        <%= f.submit "Ajouter", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+</div>
+</div>
+
+<!-- Liste des traitements -->
+<div class="card-body">
+<h5 class="card-title">Liste des Traitements</h5>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Nom du catégory</th>
+        <th scope="col">Nom du traitement</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @categories.empty? %>
+         <td>Aucun résultat</td>
+         <td></td>
+    <% else %>
+        <% @traitements.each do |traitement| %>
+            <tr>
+                <td><%= traitement.category.nomCategory %></td>
+                <td>
+                    <% traitement.nomtraitement.each do |langue, nom| %>
+                        <strong><%= langue.upcase %>:</strong> <%= nom %><br>
+                    <% end %>
+                </td>
+                
+                <td>
+                    <%= form_with url: update_traitement_json_path(traitement), method: :patch, local: true do |f| %>
+                        <div class="d-flex">
+                            <%= f.text_field :langue, placeholder: "Langue (ex: fr)", class: "form-control me-2" %>
+                            <%= f.text_field :nom, placeholder: "Nom du traitement", class: "form-control me-2" %>
+                            <%= f.submit "Ajouter", class: "btn btn-primary" %>
+                        </div>
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    <% end %>
+    </tbody>
+</table>
+</div>
