@@ -1,0 +1,36 @@
+Documentation de l'Application Patient-Traitement (Rails + Vue.js)
+
+--Description du Projet
+Cette application permet d’enregistrer des patients, d’associer un traitement à un patient, et de gérer les catégories de traitements via une interface d’administration.
+
+Technologies Utilisées
+Backend : Ruby on Rails (API RESTful)
+Frontend : Vue.js (gestion des patients et des traitements)
+Base de Données : PostgreSQL 
+Outil de Test API : Postman
+
+ Fonctionnalités Principales
+=>Côté Utilisateur
+Sélectionner une langue (français, anglais, malgache).
+Entrer un numéro de téléphone pour rechercher un patient.
+Si le patient existe, son nom s’affiche automatiquement.
+Si le patient n'existe pas, possibilité d’ajouter un nouveau patient.
+Choisir un traitement et l’associer au patient.
+
+=> Côté Administrateur
+Gérer les catégories de traitements (CRUD).
+Gérer les traitements en ajoutant des noms dans plusieurs langues.
+
+Cloner le projet => git@github.com:TsikyAro/Treatment_patient.git
+ back_end:patient_treatement
+ front_end:patient_treatment_front
+Installer les dépendance Rails : 
+	bundle install
+	rails db:create db:migrate 
+	rails server
+Installer pour la vue:
+	npm install
+	npm run dev
+
+configuration dans la base database.yml
+	 
